@@ -1,0 +1,32 @@
+﻿@model List<UserListWithLastMessageModel>
+
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+
+        <li class="clearfix @(item.UserName == ViewBag.UserName ? "odd" : "")" data-groupname="@item.GroupName">
+            <div class="chat-avatar">
+                <img src="/assets/images/Avatar-1.png" alt="male">
+                <i>@item.CreateDate.ToString("hh:mm tt")</i>
+            </div>
+            <div class="conversation-text">
+                <div class="ctext-wrap">
+                    <i>@item.UserName</i>
+                    <p style="max-width: 300px">@item.MessageText</p>
+                </div>
+            </div>
+        </li>
+        @* <script>
+            GroupName = '@item.GroupName';
+        </script> *@
+    }
+}
+else
+{
+    <div class="text-center">
+        <i class="fa fa-spinner fa-pulse fa-4x fa-fw text-custom"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+}

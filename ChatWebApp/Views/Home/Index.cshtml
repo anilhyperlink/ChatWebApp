@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "_HomeLayout";
+    ViewData["Title"] = "Home Page";
+    var userlist = ViewData["userData"] as List<UserListWithLastMessageModel>;
+}
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left side-menu" style="width: 350px;">
+    <div class="sidebar-inner slimscrollleft">
+        <!--- Divider -->
+        <div id="sidebar-menu" style="padding-bottom: 0; padding-top: 0;">
+
+            <div class="card-box">
+                <h4 class="m-t-0 m-b-20 header-title"><b>Chat</b></h4>
+
+                <div class="inbox-widget" id="UserListPartial">
+
+                    @Html.Partial("_UserList", userlist)
+
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- Left Sidebar End -->
+
+<div class="content-page" style="margin-left: 350px;">
+    <!-- Start content -->
+    <div class="content" style="margin-bottom: 10px; margin-top: 50px;">
+        <div class="container">
+            <!-- CHAT -->
+            <div class="card-box" id="chatBox">
+                <h4 class="m-t-0 m-b-20 header-title" style="background: #36404a; padding: 10px; border-radius: 5px;">
+                    <img src="~/assets/images/Avatar-1.png" alt="male" style="border-radius: 100%;width: 42px;">
+                    <b id="profileName" style="color: white;margin: 10px;vertical-align: middle;">John Deo</b>
+                </h4>
+                <div class="chat-conversation">
+                    @* <ul id="MessagesListPartial" class="conversation-list nicescroll" style="height: 650px">
+                    </ul> *@
+                    <ul id="messagesList" class="conversation-list nicescroll" style="height: 650px">
+                       
+                    </ul>
+                    <div class="row">
+                        <div class="col-sm-10 chat-inputbar p-l-0">
+                            <input type="text" id="messageInput" class="form-control chat-input" placeholder="Enter your text">
+                        </div>
+                        <div class="col-sm-2 chat-send">
+                            <button type="button" id="sendButton" class="btn btn-md btn-block waves-effect waves-light" style="background: #4db8aa; color: white;border: 1px solid #4db8aa;">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- content -->
+
+        <footer class="footer text-right" style="left:350px;">
+            @DateTime.Now.ToString("yyyy") | © ChatApp.
+        </footer>
+
+    </div>
+</div>
+
+<script>
+    var Id = '@ViewBag.UserId';
+    var userName = '@ViewBag.UserName';
+</script>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

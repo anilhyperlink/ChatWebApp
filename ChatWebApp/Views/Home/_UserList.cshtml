@@ -1,0 +1,39 @@
+﻿@model List<UserListWithLastMessageModel>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <a class="message" onclick="GetUserMessages('@item.UserId', '@item.UserName', this)">
+            <div class="inbox-item">
+                <div class="inbox-item-img"><img src="~/assets/images/Avatar-1.png" class="img-circle" alt=""></div>
+                <p class="inbox-item-author">@item.UserName</p>
+
+                @if (item.MessageText != null)
+                {
+                    @if (item.MessageText.Length > 30)
+                    {
+                        <p class="inbox-item-text">
+                            @(item.MessageText.Substring(0, 30))...
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="inbox-item-text">
+                            @item.MessageText
+                        </p>
+
+                    }
+                }
+                <p class="inbox-item-date">@item.CreateDate.ToString("hh:mm tt")</p>
+            </div>
+        </a>
+    }
+}
+else
+{
+    <div class="text-center">
+        <i class="fa fa-spinner fa-pulse fa-4x fa-fw text-custom"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+}
