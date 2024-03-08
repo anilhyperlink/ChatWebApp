@@ -93,6 +93,9 @@ function LoadContacts() {
 
 function GetUserMessages(UserId, UserName, clickedElement) {
     //display chat page
+    
+    $(".display-4").css("display", "none");
+
     $("#chatBox").css("display", "");
 
     //click houver effect
